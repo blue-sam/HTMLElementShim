@@ -989,27 +989,3 @@ defineParentNode(Text.prototype)
 defineParentNode(Node.prototype)
 
 var document = new Document();
-
-Element.prototype.setAttributes = function (attributes) {
-    //var isPlainObject = Object.prototype.toString.call(attributes) === '[object Object]' &&
-    //  typeof attributes.constructor === 'function' &&
-    //  Object.prototype.toString.call(attributes.constructor.prototype) === '[object Object]' &&
-    //  attributes.constructor.prototype.hasOwnProperty('isPrototypeOf');
-    var element = this;
-
-    for (var key in attributes) {
-        element.setAttribute(key, attributes[key]);
-    }
-};
-
-Element.prototype.appendChildren = function (children) {
-    var element = this;
-    children = Array.isArray(children) ? children : [children];
-    children.forEach(function (child) {
-        if (child instanceof Element) {
-            element.appendChild(child);
-        } else if (child || typeof child === 'string') {
-            element.appendChild(document.createTextNode(child.toString()));
-        }
-    });
-};
